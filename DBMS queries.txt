@@ -1,0 +1,216 @@
+28-09-2022 
+1)-  CREATE  TABLE  Student(Studentid int, FirstName varchar(20) , LastName varchar(20) , Course varchar(20) , Credit int);
+2)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (101 , 'Ram' , 'Kumar' , 'DBMS' , 3);
+3)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (102 , 'Sham' , 'Sunder' , 'OS' , 3);
+4)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (103 , 'Sita' , 'Kumar' , 'COA' , 4);
+5)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (103 , 'Radha' , 'Sunder' , 'DS' , 4);
+6)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (104 , 'MOHAN' , 'Sunder' , 'MATHS' , 2);
+7)-  UPDATE student SET Studentid = '104' where FirstName = 'Radha';
+8)-  UPDATE student SET Studentid = '105' where FirstName = 'MOHAN';
+9)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (106 , 'Sohan' , 'Sharma' , 'Data Visualization' , 3);
+10)-  Select * from student;
+11)-  Delete from student WHERE FirstName = 'Sohan';
+12)-  Select * from student;
+13)-  Alter Table student ADD PRIMARY KEY (Studentid);
+14)-  CREATE DATABASE dropdb;
+15)-  SHOW DATABASES;
+16)-  DROP DATABASE dropdb;
+17)-  SHOW DATABASES;
+
+30-09-2022
+1)- CREATE USER manager IDENTIFIED BY 'M1';
+2)- GRANT ALL ON mysqldb.* TO manager;
+3)- SHOW GRANTS FOR manager;
+4)- SHOW GRANTS FOR manager; 
+5)- REVOKE ALL, GRANT OPTION FROM manager;
+6)- SHOW GRANTS FOR manager;
+7)- INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (106 , 'Sohan' , 'Sharma' , 'Data Visualization' , 3);
+8)- INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (107 , 'Rohan' , 'Sharma' , 'NETWORK' , 5);
+9)- Delete from student WHERE Credit = 2;
+10)- commit;
+11)- ROllBACK;
+12)- SAVEPOINT S1;
+13)- INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (108 , 'Mohan' , 'Sharma' , 'NETWORK' , 5);
+14)- Delete from student WHERE FirstName = 'Mohan' ;
+15)- ROLLBACK;
+
+7-10-22
+
+1-select * from student;
+2-CREATE VIEW Students
+    -> As
+    -> SELECT Studentid , FirstName , LastName ,Course
+    -> FROM student;
+3-select * from Students;
+4- 
+mysql> UPDATE Students
+    -> Set
+    -> FirstName =  'Sohan'
+    -> where
+    -> Studentid = 102; 
+
+5)-  CREATE TABLE Courses (Studentid int , Courseid varchar(20) , Marks int);
+6)-  INSERT INTO Courses(Studentid , Courseid , Marks) VALUES (101 , 'CS101' , 90);
+7)-  INSERT INTO Courses(Studentid , Courseid , Marks) VALUES (102 , 'CS102' , 80);
+8)-  INSERT INTO Courses(Studentid , Courseid , Marks) VALUES (103 , 'CS103' , 85);
+9)-  INSERT INTO Courses(Studentid , Courseid , Marks) VALUES (104 , 'CS104' , 75);
+10)- INSERT INTO Courses(Studentid , Courseid , Marks) VALUES (105 , 'CS105' , 90);
+
+11)- select * from Courses;
+12)- SELECT student.Studentid , student.FirstName , Courses.Marks
+    -> From student
+    -> INNER JOIN Courses ON student.Studentid = Courses.Studentid;
+
+13)- Select student.Studentid , student.FirstName , student.credit , Courses.courseid
+    -> From student
+    -> LEFT JOIN Courses ON student.Studentid = Courses.Studentid
+    -> ORDER BY student.Credit;
+
+14)-  Select student.Studentid , student.FirstName , student.credit , Courses.courseid
+    -> From student
+    -> RIGHT JOIN Courses ON student.Studentid = Courses.Studentid
+    -> ORDER BY student.Credit;
+
+21-10-202 && 18-11-2022
+
+1)- Select MIN(MARKS) AS LowestScore FROM Courses;
+
+2)-  Select MAX(MARKS) AS HighestScore FROM Courses;
+
+3)-SELECT CURRENT_TIMESTAMP;
+
+4)-PLSQL (PROCEDURE , LOOP , CONDITION && FUNCTION)
+
+DECLARE 
+   a number; 
+   b number; 
+   c number;
+   d number;
+   g number;
+   e number;
+   
+FUNCTION findMax(x IN number, y IN number) 
+
+RETURN number
+IS
+z number;
+BEGIN 
+   IF x > y THEN 
+      z:= x; 
+   ELSE 
+      Z:= y; 
+   END IF;  
+   RETURN z; 
+END; 
+
+PROCEDURE findMin(x IN number, y IN number, z OUT number) IS 
+BEGIN 
+   IF x < y THEN 
+      z:= x; 
+   ELSE 
+      z:= y; 
+   END IF; 
+END;
+
+BEGIN  
+<<outer_loop>>
+FOR a IN 1..5 LOOP
+    <<inner_loop>>
+    
+    FOR b IN 1..10 LOOP
+   
+    dbms_output.put_line('value of a is : '||a);
+    dbms_output.put_line('value of b is : '||b);
+    c:=a+b;
+    d:=b-a;
+     dbms_output.put_line('value of c is : '||c);
+     dbms_output.put_line('value of d is : '||d);
+     g := findMax(c,d);
+     dbms_output.put_line(' Maximum of c and d is : ' || g); 
+     
+     findMin(c,d,e);
+     dbms_output.put_line(' Minimum of c, d : ' || e);
+     
+     END loop inner_loop; 
+   END loop outer_loop;
+   
+END;
+
+/*
+LOOP
+i number (1);
+j number (1);
+p integer;
+
+*/
+
+/*for loop*/
+/*
+BEGIN
+<<outer_loop>>
+FOR i IN 11..20 LOOP
+    <<inner_loop>>
+    dbms_output.put_line('Table of  : '||i);
+    FOR j IN 1..10 LOOP 
+    p:=i*j;
+     dbms_output.put_line('value of p is : '||p);
+     END loop inner_loop; 
+   END loop outer_loop; 
+*/
+
+5)-//for Cursor + Triggers 
+
+ CREATE TABLE Customerss( ID int , Name varchar(20) , Age int , City varchar(20) , SALARY int);
+ INSERT INTO Customerss(ID , Name , Age , City , SALARY) VALUES (1, 'RAM' , 25 , 'DELHI' , 5000);
+ INSERT INTO Customerss(ID , Name , Age , City , SALARY) VALUES (2, 'SHAM' , 27 , 'MBD' , 6000);
+ INSERT INTO Customerss(ID , Name , Age , City , SALARY) VALUES (3, 'ROHAN' , 30 , 'BHOPAL' , 7000);
+ INSERT INTO Customerss(ID , Name , Age , City , SALARY) VALUES (4, 'SOHAN' , 26 , 'INDORE' , 8000);
+ INSERT INTO Customerss(ID , Name , Age , City , SALARY) VALUES (5, 'MOHAN' , 28 , 'MUMBAI' , 9000);
+ SELECT * FROM Customerss;
+ 
+ /* implicit cursor
+  DECLARE   
+   total_rows number(2);  
+BEGIN  
+   UPDATE  Customers  
+   SET salary = salary + 500;  
+   IF sql%notfound THEN  
+      dbms_output.put_line('no customers updated');  
+   ELSIF sql%found THEN  
+      total_rows := sql%rowcount;  
+      dbms_output.put_line( total_rows || ' customers updated ');  
+   END IF;   
+END;
+/
+*/
+
+
+CREATE OR REPLACE TRIGGER display_salary_change 
+BEFORE DELETE OR INSERT OR UPDATE ON Customerss  
+FOR EACH ROW  
+WHEN (NEW.ID > 0)  
+DECLARE  
+   sal_diff number;  
+BEGIN  
+   sal_diff := :NEW.SALARY - :OLD.SALARY ;  
+   dbms_output.put_line('Old salary: ' || :OLD.SALARY);  
+   dbms_output.put_line('New salary: ' || :NEW.SALARY);  
+   dbms_output.put_line('Salary difference: ' || sal_diff);  
+END;  
+/  
+
+DECLARE   
+   total_rows number(2);  
+BEGIN  
+   UPDATE  Customerss  
+   SET SALARY = SALARY + 500;  
+   IF sql%notfound THEN  
+      dbms_output.put_line('no customers updated');  
+   ELSIF sql%found THEN  
+      total_rows := sql%rowcount;  
+      dbms_output.put_line( total_rows || ' customers updated ');  
+   END IF;   
+END;  
+/  
+
+
