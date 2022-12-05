@@ -1,3 +1,5 @@
+22MCS1009 - ATIENDRIYA VERMA
+
 28-09-2022 
 1)-  CREATE  TABLE  Student(Studentid int, FirstName varchar(20) , LastName varchar(20) , Course varchar(20) , Credit int);
 2)-  INSERT INTO student(Studentid , FirstName , LastName , Course , Credit) VALUES (101 , 'Ram' , 'Kumar' , 'DBMS' , 3);
