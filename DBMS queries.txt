@@ -170,7 +170,7 @@ FOR i IN 11..20 LOOP
  INSERT INTO Customerss(ID , Name , Age , City , SALARY) VALUES (5, 'MOHAN' , 28 , 'MUMBAI' , 9000);
  SELECT * FROM Customerss;
  
- /* implicit cursor
+ /*  cursor
   DECLARE   
    total_rows number(2);  
 BEGIN  
